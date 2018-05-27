@@ -16,7 +16,7 @@ Formula to configure users via pillar.
     - ubuntu.sls - if you have ubuntu linux
     - centos.sls - if you have cantos linux
 file example:
-
+.. code:: yaml
 users:                                  - not change
   - redhat:                             - name of user 
   - fullname: redhat                    - name of user.
