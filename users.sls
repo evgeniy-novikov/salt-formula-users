@@ -20,7 +20,7 @@
       - {{ group }}
       {% endfor %}
 
-{% if 'sudouser' in user %}
+{% if user.get ('sudouser', true) %}
 /etc/sudoers.d/{{ name }}:
   file.managed:
   - source: salt://templates/sudoers.d.jinja2
