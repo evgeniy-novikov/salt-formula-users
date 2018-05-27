@@ -30,20 +30,19 @@
 {% endif %}
 
 {% if 'ssh_key_prv' in user %}
-{{ user['home'] }}/.ssh/id_rsa:
-  file:
-    - managed
-    - source: {{ user['ssh_key_prv'] }}
-#    - user: {{ name }}
-    - group: root
-    - mode: 600
- {% endif %}
+{% for key_prv in user.get('ssh_key_prv', []) -%}
+add_{{ key_prv }}:
+  file.managed:
+    - name: {{ user['home'] }}/.ssh/{{ key_prv }}
+    - source: {{ user['ssh_key_dir'] }}/{{ key_prv }}
+{% endfor %}
+{% endif %}
 
 {% if 'ssh_auth' in user %}
 sshkey_{{ name }}:
   ssh_auth.present:
     - user: {{ name }}
-    - source: {{ user['ssh_auth'] }}
+    - source: {{ user['ssh_key_dir'] }}/{{ user['ssh_auth'] }}
 {% endif %}
 {% endfor %}
 

@@ -27,8 +27,10 @@ users:   				- not change
       - users				- name of group
       - root				- name of group 
     sudouser: Ture			- if you need to 'sudo' without password
-    ssh_auth: salt://tests/centos.pub	- file with ssh public key
-    ssh_key_prv: salt://tests/centos.pem - file with ssh private key 
+    ssh_key_dir: salt://tests		- folder with ssh keys
+    ssh_auth: centos.pub		- file with ssh public key
+    ssh_key_prv:			- not change
+      - centos.pem			- private ssh key
 
 absent_users:				- not change
   - canonical				- user with you want to delete from your system
@@ -38,8 +40,15 @@ if not need to delete some user comment to this parameters
     #  - canonical
 
 if you need to add more then one public key you need to copy key to file
-ssh_auth: salt://tests/centos.pub 
+ssh_auth: centos.pub 
 !!!! each key with a new line
+
+if you need to add more then one private key you need to add key file
+in directory /srv/salt-formula-users/tests and add name of file to pillar like in exemple
+
+   ssh_key_prv:
+      - centos.pem
+      - centos2.pem
 
 5. Before start need to check on errors 
     salt 'minion-name' state.sls users test=true
