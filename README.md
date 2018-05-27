@@ -17,11 +17,12 @@ Formula to configure users via pillar.
 ```bash
     cd /srv
     git clone https://github.com/1-0/salt-formula-users.git
-```bash
+```
 4. If you want to create user you need to change one of the pillars file
     - ubuntu.sls - if you have ubuntu linux
     - centos.sls - if you have cantos linux
 file example:
+
 ```yaml
 users:                                  - not change
   - redhat:                             - name of user 
