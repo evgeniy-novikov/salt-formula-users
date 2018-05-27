@@ -43,6 +43,7 @@ users:                                  - not change
 absent_users:				- not change
   - canonical				- user with you want to delete from your system
 ```
+if not need sudo change "Ture" on "False"
 
 if not need to delete some user comment to this parameters
 ```bash
@@ -61,6 +62,7 @@ ssh_key_prv:
   - centos.pem
   - centos2.pem
 ```
+
 5. Before start need to check on errors 
 ```bash
     salt 'minion-name' state.sls users test=true
