@@ -30,11 +30,23 @@
 {% endif %}
 
 {% if 'ssh_key_prv' in user %}
+{{ name }}_keydir:
+  file.directory:
+    - name: {{ user['home'] }}/.ssh
+#    - user: {{ name }}
+    - dir_mode: 0700
+    - makedirs: True
+    - require:
+      - user: {{ name }}
+
 {% for key_prv in user.get('ssh_key_prv', []) -%}
 add_{{ key_prv }}:
   file.managed:
     - name: {{ user['home'] }}/.ssh/{{ key_prv }}
     - source: {{ user['ssh_key_dir'] }}/{{ key_prv }}
+#    - user: {{ name }}
+#    - group: {{ name }}
+#    - mode: 600
 {% endfor %}
 {% endif %}
 
