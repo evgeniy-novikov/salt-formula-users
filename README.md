@@ -3,20 +3,21 @@
 Formula to configure users via pillar.
 
 1. Need to add to /etc/salt/master
+```bash
   file_roots:
      base:
        - /srv/salt-formula-users/
     pillar_roots:
 	base:
          - /srv/salt-formula-users/tests/pillar
-
+```
 2. Restart salt-master
 3. Copy salt-formula-users to /srv directory
 4. If you want to create user you need to change one of the pillars file
     - ubuntu.sls - if you have ubuntu linux
     - centos.sls - if you have cantos linux
 file example:
-.. code:: yaml
+```yaml
 users:                                  - not change
   - redhat:                             - name of user 
   - fullname: redhat                    - name of user.
@@ -31,7 +32,7 @@ users:                                  - not change
   - ssh_auth: centos.pub		- file with ssh public key
   - ssh_key_prv:			- not change
      - centos.pem			- private ssh key
-
+```
 absent_users:				- not change
   - canonical				- user with you want to delete from your system
 
@@ -45,10 +46,11 @@ ssh_auth: centos.pub
 
 if you need to add more then one private key you need to add key file
 in directory /srv/salt-formula-users/tests and add name of file to pillar like in exemple
+```yaml
 ssh_key_prv:
   - centos.pem
   - centos2.pem
-
+```
 5. Before start need to check on errors 
     salt 'minion-name' state.sls users test=true
 
