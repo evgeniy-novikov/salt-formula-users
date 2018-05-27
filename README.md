@@ -3,9 +3,9 @@
 Formula to configure users via pillar.
 
 1. Need to add to /etc/salt/master
-    file_roots:
-       base:
-	 - /srv/salt-formula-users/
+  file_roots:
+     base:
+       - /srv/salt-formula-users/
     pillar_roots:
 	base:
          - /srv/salt-formula-users/tests/pillar
@@ -17,13 +17,13 @@ Formula to configure users via pillar.
     - centos.sls - if you have cantos linux
 file example:
 
-users:   				- not change
-  - redhat:				- name of user 
-  - fullname: redhat			- name of user.
-  - home: /home/redhat			- user directory
-  - uid: 4000				- uid 
-  - gid: 100				- gid
-  - groups:				- groups
+users:                                  - not change
+  - redhat:                             - name of user 
+  - fullname: redhat                    - name of user.
+  - home: /home/redhat                  - user directory
+  - uid: 4000                           - uid 
+  - gid: 100                            - gid
+  - groups:                             - groups
      - users				- name of group
      - root				- name of group 
   - sudouser: Ture			- if you need to 'sudo' without password
