@@ -18,26 +18,26 @@ Formula to configure users via pillar.
 file example:
 
 users:   				- not change
-  redhat:				- name of user 
-    fullname: redhat			- name of user.
-    home: /home/redhat			- user directory
-    uid: 4000				- uid 
-    gid: 100				- gid
-    groups:				- groups
-      - users				- name of group
-      - root				- name of group 
-    sudouser: Ture			- if you need to 'sudo' without password
-    ssh_key_dir: salt://tests		- folder with ssh keys
-    ssh_auth: centos.pub		- file with ssh public key
-    ssh_key_prv:			- not change
-      - centos.pem			- private ssh key
+  - redhat:				- name of user 
+  - fullname: redhat			- name of user.
+  - home: /home/redhat			- user directory
+  - uid: 4000				- uid 
+  - gid: 100				- gid
+  - groups:				- groups
+     - users				- name of group
+     - root				- name of group 
+  - sudouser: Ture			- if you need to 'sudo' without password
+  - ssh_key_dir: salt://tests		- folder with ssh keys
+  - ssh_auth: centos.pub		- file with ssh public key
+  - ssh_key_prv:			- not change
+     - centos.pem			- private ssh key
 
 absent_users:				- not change
   - canonical				- user with you want to delete from your system
 
 if not need to delete some user comment to this parameters
-    # absent_users:
-    #  - canonical
+absent_users:
+  - canonical
 
 if you need to add more then one public key you need to copy key to file
 ssh_auth: centos.pub 
@@ -45,10 +45,9 @@ ssh_auth: centos.pub
 
 if you need to add more then one private key you need to add key file
 in directory /srv/salt-formula-users/tests and add name of file to pillar like in exemple
-
-   ssh_key_prv:
-      - centos.pem
-      - centos2.pem
+ssh_key_prv:
+  - centos.pem
+  - centos2.pem
 
 5. Before start need to check on errors 
     salt 'minion-name' state.sls users test=true
