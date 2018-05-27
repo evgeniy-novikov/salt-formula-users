@@ -1,0 +1,6 @@
+{% set users = salt['grains.filter_by']({
+    'Ubuntu': {
+    },
+    'CentOS': {
+    },
+}, grain='os', merge=salt['pillar.get']('users')) %}
