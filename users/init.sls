@@ -23,7 +23,7 @@
 {% if user.get ('sudouser', true) %}
 /etc/sudoers.d/{{ name }}:
   file.managed:
-  - source: salt://templates/sudoers.d.jinja2
+  - source: salt://users/templates/sudoers.d.jinja2
   - template: jinja
   - context:
     user_name: {{ name }}
